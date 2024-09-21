@@ -16,6 +16,8 @@
 
 package com.codelab.basiclayouts
 
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -63,20 +65,27 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
+import androidx.core.os.ConfigurationCompat
+import java.util.Locale
+
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             val windowSizeClass = calculateWindowSizeClass(this)
             MySootheApp(windowSizeClass)
@@ -347,13 +356,25 @@ fun MySootheAppLandscape() {
     }
 }
 
+
+val LocalAppLocale = compositionLocalOf { Locale.getDefault() }
+
 // Step: MySoothe App
 @Composable
 fun MySootheApp(windowSize: WindowSizeClass) {
+
+    val context = LocalContext.current
+    val locale = Locale("ru")
+    Locale.setDefault(locale)
+    val config = Configuration()
+    config.locale = locale
+    context.resources.updateConfiguration(config, context.resources.displayMetrics)
+
     when (windowSize.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             MySootheAppPortrait()
         }
+
         WindowWidthSizeClass.Expanded -> {
             MySootheAppLandscape()
         }

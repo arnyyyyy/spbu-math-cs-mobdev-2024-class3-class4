@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MySoothe</string>
+    <string name="favorite_collections">Избранное</string>
+    <string name="align_your_body">Заземлитесь</string>
+    <string name="ab1_inversions">Инверсивные позы</string>
+    <string name="ab2_quick_yoga">Ритмичная йога</string>
+    <string name="ab3_stretching">Растяжка</string>
+    <string name="ab4_tabata">Табата</string>
+    <string name="ab5_hiit">Кардио</string>
+    <string name="ab6_pre_natal_yoga">Йога для беременных</string>
+    <string name="fc1_short_mantras">Аффирмации</string>
+    <string name="fc2_nature_meditations">Медитации</string>
+    <string name="fc3_stress_and_anxiety">Стресс и тревога</string>
+    <string name="fc4_self_massage">Массаж</string>
+    <string name="fc5_overwhelmed">Тревожность</string>
+    <string name="fc6_nightly_wind_down">Отпускаем негатив</string>
+    <string name="cd_fab_start">Старт</string>
+    <string name="bottom_navigation_home">На главную</string>
+    <string name="bottom_navigation_profile">Профиль</string>
+    <string name="placeholder_search">Поиск</string>
+</resources>
