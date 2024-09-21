@@ -16,6 +16,7 @@
 
 package com.example.reply.ui
 
+import android.content.res.Configuration
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -43,17 +44,27 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import com.example.reply.data.Email
+import java.util.Locale
 
 @Composable
 fun ReplyApp(
     replyHomeUIState: ReplyHomeUIState,
     onEmailClick: (Email) -> Unit,
 ) {
+    val context = LocalContext.current
+    val locale = Locale("ru")
+    Locale.setDefault(locale)
+    val config = Configuration()
+    config.locale = locale
+    context.resources.updateConfiguration(config, context.resources.displayMetrics)
+
+
     ReplyNavigationWrapperUI {
         ReplyAppContent(
             replyHomeUIState = replyHomeUIState,
@@ -141,40 +152,4 @@ fun ReplyAppContent(
     )
 }
 
-
-//@OptIn(ExperimentalMaterial3AdaptiveApi::class)
-//@Composable
-//fun ReplyAppContent(
-//    replyHomeUIState: ReplyHomeUIState,
-//    onEmailClick: (Email) -> Unit,
-//) {
-//    val navigator = rememberListDetailPaneScaffoldNavigator<Long>()
-//
-//    ListDetailPaneScaffold(
-//        directive = navigator.scaffoldDirective,
-//        value = navigator.scaffoldValue,
-//        listPane = {
-//            ReplyListPane(replyHomeUIState, onEmailClick)
-//        },
-//        detailPane = {
-//            ReplyDetailPane(replyHomeUIState.emails.first())
-//        },
-//        listPane = {
-//            ReplyListPane(
-//                replyHomeUIState = replyHomeUIState,
-//                onEmailClick = { email ->
-//                    onEmailClick(email)
-//                    navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, email.id)
-//                }
-//            )
-//        },
-//
-//        detailPane = {
-//            if (replyHomeUIState.selectedEmail != null) {
-//                ReplyDetailPane(replyHomeUIState.selectedEmail)
-//            }
-//        },
-//
-//    )
-//}
 

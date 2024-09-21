@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ответ</string>
+    <string name="navigation_drawer">Навигация</string>
+    <string name="tab_inbox">Почта</string>
+    <string name="tab_article">Статьи</string>
+    <string name="tab_dm">Входящие</string>
+    <string name="tab_groups">Группы</string>
+    <string name="profile">Профиль</string>
+    <string name="search">Поиск</string>
+    <string name="search_replies">Искать ответы</string>
+    <string name="reply">Ответить</string>
+    <string name="reply_all">Ответить всем</string>
+</resources>
