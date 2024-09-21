@@ -1,6 +1,7 @@
 package com.example.reply.ui.theme
 
 import android.app.Activity
+import android.content.res.Configuration
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import java.util.Locale
 
 
 private val LightColors = lightColorScheme(
@@ -87,6 +89,14 @@ fun ReplyTheme(
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
+    val locale = Locale("ru")
+    Locale.setDefault(locale)
+    val config = Configuration()
+    config.locale = locale
+    context.resources.updateConfiguration(config, context.resources.displayMetrics)
+
+
+//    val context = LocalContext.current
     val colors = when {
         (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) -> {
             if (useDarkTheme) dynamicDarkColorScheme(context)

@@ -44,6 +44,7 @@ class MainActivity : ComponentActivity() {
             ReplyTheme {
                 Surface(tonalElevation = 5.dp) {
                     ReplyApp(
+
                         replyHomeUIState = uiState,
                         closeDetailScreen = {
                             viewModel.closeDetailScreen()
