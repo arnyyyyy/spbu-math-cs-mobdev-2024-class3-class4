@@ -356,9 +356,6 @@ fun MySootheAppLandscape() {
     }
 }
 
-
-val LocalAppLocale = compositionLocalOf { Locale.getDefault() }
-
 // Step: MySoothe App
 @Composable
 fun MySootheApp(windowSize: WindowSizeClass) {
