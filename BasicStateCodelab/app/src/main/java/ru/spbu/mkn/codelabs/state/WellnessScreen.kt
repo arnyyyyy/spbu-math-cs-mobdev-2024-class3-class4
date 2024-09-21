@@ -1,8 +1,12 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import ru.spbu.mkn.codelabs.state.StatefulCounter
+import androidx.compose.foundation.layout.Column
 
 @Composable
 fun WellnessScreen(modifier: Modifier = Modifier) {
-    StatefulCounter(modifier)
+    Column(modifier = modifier) {
+        StatefulCounter()
+        WellnessTasksList()
+    }
 }

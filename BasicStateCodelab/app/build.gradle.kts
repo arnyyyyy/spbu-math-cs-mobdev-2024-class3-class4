@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "ru.spbu.mkn.codelabs.state"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "ru.spbu.mkn.codelabs.state"
         minSdk = 29
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
