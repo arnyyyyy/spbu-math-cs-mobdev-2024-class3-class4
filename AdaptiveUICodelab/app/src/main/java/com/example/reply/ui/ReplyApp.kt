@@ -16,6 +16,7 @@
 
 package com.example.reply.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -46,6 +47,7 @@ import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowSize
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
@@ -105,21 +107,40 @@ private fun ReplyNavigationWrapperUI(
 
 
 
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ReplyAppContent(
     replyHomeUIState: ReplyHomeUIState,
-    onDrawerClicked: () -> Unit = {}
+    onEmailClick: (Email) -> Unit,
 ) {
-    Row(modifier = Modifier
-        .fillMaxSize()) {
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.inverseOnSurface)
-        ) {
-            ReplyListOnlyContent(replyHomeUIState = replyHomeUIState, modifier = Modifier.weight(1f))
-            ReplyBottomNavigationBar()
-        }
+    val navigator = rememberListDetailPaneScaffoldNavigator<Long>()
+
+    BackHandler(navigator.canNavigateBack()) {
+        navigator.navigateBack()
     }
+
+    ListDetailPaneScaffold(
+        directive = navigator.scaffoldDirective,
+        value = navigator.scaffoldValue,
+        listPane = {
+            AnimatedPane {
+                ReplyListPane(
+                    replyHomeUIState = replyHomeUIState,
+                    onEmailClick = { email ->
+                        onEmailClick(email)
+                        navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, email.id)
+                    }
+                )
+            }
+        },
+        detailPane = {
+            AnimatedPane {
+                if (replyHomeUIState.selectedEmail != null) {
+                    ReplyDetailPane(replyHomeUIState.selectedEmail)
+                }
+            }
+        }
+    )
 }
 
 @Composable
