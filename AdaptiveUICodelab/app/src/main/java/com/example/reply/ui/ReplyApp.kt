@@ -46,15 +46,26 @@ import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowSize
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 import com.example.reply.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,14 +78,31 @@ fun ReplyApp(replyHomeUIState: ReplyHomeUIState) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ReplyNavigationWrapperUI(
-    replyHomeUIState: ReplyHomeUIState
+    content: @Composable () -> Unit = {}
 ) {
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-    val selectedDestination = ReplyDestinations.INBOX
+    var selectedDestination: ReplyDestination by remember {
+        mutableStateOf(ReplyDestination.Inbox)
+    }
 
-    ReplyAppContent(replyHomeUIState)
+    val windowSize = with(LocalDensity.current) {
+        currentWindowSize().toSize().toDpSize()
+    }
+    val layoutType = if (windowSize.width >= 1200.dp) {
+        NavigationSuiteType.NavigationDrawer
+    } else {
+        NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(
+            currentWindowAdaptiveInfo()
+        )
+    }
+
+    NavigationSuiteScaffold(
+        layoutType = layoutType,
+        ...
+    ) {
+        content()
+    }
 }
+
 
 
 @Composable
