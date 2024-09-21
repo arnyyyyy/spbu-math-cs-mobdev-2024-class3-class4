@@ -10,3 +10,5 @@ fun WellnessScreen(modifier: Modifier = Modifier) {
         WellnessTasksList()
     }
 }
+
+private fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
