@@ -34,7 +34,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.theme.RallyTheme
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.compose.rally.ui.overview.OverviewScreen
+import com.example.compose.rally.ui.accounts.SingleAccountScreen
 
 /**
  * This Activity recreates part of the Rally Material Study from
@@ -88,10 +91,15 @@ fun RallyApp() {
                 navController = navController,
                 startDestination = Overview.route,
                 modifier = Modifier.padding(innerPadding)
-            ) {}
+            ) {
+                composable(route = Overview.route) {
+                    Overview.screen()
+                }
 //            { innerPadding ->
 //                Box(Modifier.padding(innerPadding)) {
-//                    currentScreen.screen()
+//
+                //                    currentScreen.screen()
+            }
         }
     }
 }

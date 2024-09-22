@@ -16,13 +16,18 @@
 
 package com.example.compose.rally
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.Money
 import androidx.compose.material.icons.filled.MoneyOff
 import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import com.example.compose.rally.ui.accounts.AccountsScreen
 import com.example.compose.rally.ui.accounts.SingleAccountScreen
 import com.example.compose.rally.ui.bills.BillsScreen
@@ -43,7 +48,7 @@ interface RallyDestination {
 object Overview : RallyDestination {
     override val icon = Icons.Filled.PieChart
     override val route = "overview"
-    override val screen: @Composable () -> Unit = { OverviewScreen() }
+    override val screen: @Composable () -> Unit = { OverviewScreen()}
 }
 
 object Accounts : RallyDestination {
@@ -69,3 +74,32 @@ object SingleAccount : RallyDestination {
 
 // Screens to be displayed in the top RallyTabRow
 val rallyTabRowScreens = listOf(Overview, Accounts, Bills)
+
+@Composable
+fun RallyNavHost(
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
+    NavHost(
+        navController = navController,
+        startDestination = Overview.route,
+        modifier = Modifier
+    ) {
+        composable(route = Overview.route) {
+            OverviewScreen(
+                onClickSeeAllAccounts = {
+                    navController.navigateSingleTopTo(Accounts.route)
+                },
+                onClickSeeAllBills = {
+                    navController.navigateSingleTopTo(Bills.route)
+                }
+            )
+        }
+        composable(route = Accounts.route) {
+            AccountsScreen()
+        }
+        composable(route = Bills.route) {
+            BillsScreen()
+        }
+    }
+}
