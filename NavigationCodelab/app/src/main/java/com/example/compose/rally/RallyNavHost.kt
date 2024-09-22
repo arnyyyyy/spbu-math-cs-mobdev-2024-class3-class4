@@ -18,13 +18,13 @@ import com.example.compose.rally.ui.overview.OverviewScreen
 @Composable
 fun RallyNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier = Modifier.padding(innerPadding),
+    startDestination = Overview.route,
 ) {
-
     NavHost(
         navController = navController,
         startDestination = Overview.route,
-        modifier = Modifier.padding(10.dp)
+        modifier = Modifier.padding(innerPadding)
     ) {
         composable(route = Overview.route) {
             Overview.screen()
@@ -35,5 +35,5 @@ fun RallyNavHost(
         composable(route = Bills.route) {
             Bills.screen()
         }
+
     }
-}

@@ -28,10 +28,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.theme.RallyTheme
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.NavHost
 
 /**
  * This Activity recreates part of the Rally Material Study from
@@ -55,13 +55,24 @@ fun RallyApp() {
             topBar = {
                 RallyTabRow(
                     allScreens = rallyTabRowScreens,
-                    onTabSelected = { screen -> currentScreen = screen },
-                    currentScreen = currentScreen
+                    // Pass the callback like this,
+                    // defining the navigation action when a tab is selected:
+                    onTabSelected = { newScreen ->
+                        navController.navigate(newScreen.route)
+                    },
+                    currentScreen = currentScreen,
                 )
             }
-        ) { innerPadding ->
-            Box(Modifier.padding(innerPadding)) {
-                currentScreen.screen()
+        { innerPadding ->
+            NavHost(
+                navController = navController,
+                startDestination = Overview.route,
+                modifier = Modifier.padding(innerPadding)
+            )
+            { innerPadding ->
+                Box(Modifier.padding(innerPadding)) {
+                    currentScreen.screen()
+                }
             }
         }
     }
