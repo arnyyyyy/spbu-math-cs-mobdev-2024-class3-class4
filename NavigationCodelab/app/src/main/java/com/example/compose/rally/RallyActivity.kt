@@ -16,6 +16,7 @@
 
 package com.example.compose.rally
 
+import RallyNavHost
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -76,7 +77,6 @@ fun RallyApp() {
 
         val currentBackStack by navController.currentBackStackEntryAsState()
         val currentDestination = currentBackStack?.destination
-
         // Change the variable to this and use Overview as a backup screen if this returns null
         val currentScreen =
             rallyTabRowScreens.find { it.route == currentDestination?.route } ?: Overview
@@ -93,51 +93,11 @@ fun RallyApp() {
             }
         )
         { innerPadding ->
-            NavHost(
-                navController = navController,
-                startDestination = Overview.route,
-                modifier = Modifier.padding(innerPadding)
-            ) {
-                composable(route = Overview.route) {
-                    OverviewScreen(
-
-                        onAccountClick = { accountType ->
-                            navController.navigateToSingleAccount(accountType)
-                        },
-
-                        onClickSeeAllAccounts = {
-                            navController.navigateSingleTopTo(Accounts.route)
-                        },
-                        onClickSeeAllBills = {
-                            navController.navigateSingleTopTo(Bills.route)
-                        }
-                    )
-                }
-                composable(route = Accounts.route) {
-                    AccountsScreen(
-                        onAccountClick = { accountType ->
-                            navController.navigateToSingleAccount(accountType)
-                        }
-                    )
-                }
-                composable(route = Bills.route) {
-                    BillsScreen()
-                }
-                composable(
-
-                    route = SingleAccount.routeWithArgs,
-                    arguments = SingleAccount.arguments,
-                    deepLinks = SingleAccount.deepLinks)
-                { navBackStackEntry ->
-                    // Retrieve the passed argument
-                    val accountType =
-                        navBackStackEntry.arguments?.getString(SingleAccount.accountTypeArg)
-
-                    // Pass accountType to SingleAccountScreen
-                    SingleAccountScreen(accountType)
-                }
-            }
-        }
+        RallyNavHost(
+            navController = navController,
+            modifier = Modifier.padding(innerPadding)
+        )
+    }
     }
 }
 
