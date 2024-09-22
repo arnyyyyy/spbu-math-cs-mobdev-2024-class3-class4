@@ -16,16 +16,24 @@
 
 package com.example.android.codelab.animation
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.android.codelab.animation.ui.AnimationCodelabTheme
 import com.example.android.codelab.animation.ui.home.Home
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val locale = Locale("ru")
+        Locale.setDefault(locale)
+        val config = Configuration(resources.configuration)
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
         setContent {
             AnimationCodelabTheme {
                 Home()

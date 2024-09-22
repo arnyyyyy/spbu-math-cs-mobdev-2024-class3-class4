@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AnimationCodelab</string>
+    <string name="home">Главная</string>
+    <string name="work">Работа</string>
+    <string name="weather">Погода</string>
+    <string name="temperature">18 С</string>
+    <string name="tasks">Задачи</string>
+    <string name="add_tasks">Добавить задачу</string>
+    <string name="topics">Топики</string>
+    <string name="lorem_ipsum">Цитатка на латыни</string>
+    <string name="edit">Редактировать</string>
+    <string name="edit_message">Редактирование не поддерживается</string>
+    <string name="refresh">Обновить</string>
+</resources>
