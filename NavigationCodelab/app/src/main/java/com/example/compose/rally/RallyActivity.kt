@@ -38,6 +38,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.example.compose.rally.ui.accounts.AccountsScreen
 import com.example.compose.rally.ui.overview.OverviewScreen
 import com.example.compose.rally.ui.accounts.SingleAccountScreen
@@ -77,7 +78,8 @@ fun RallyApp() {
         val currentDestination = currentBackStack?.destination
 
         // Change the variable to this and use Overview as a backup screen if this returns null
-        val currentScreen = rallyTabRowScreens.find { it.route == currentDestination?.route } ?: Overview
+        val currentScreen =
+            rallyTabRowScreens.find { it.route == currentDestination?.route } ?: Overview
         Scaffold(
             topBar = {
                 RallyTabRow(
@@ -122,8 +124,11 @@ fun RallyApp() {
                     BillsScreen()
                 }
                 composable(
+
                     route = SingleAccount.routeWithArgs,
-                    arguments = SingleAccount.arguments) { navBackStackEntry ->
+                    arguments = SingleAccount.arguments,
+                    deepLinks = SingleAccount.deepLinks)
+                { navBackStackEntry ->
                     // Retrieve the passed argument
                     val accountType =
                         navBackStackEntry.arguments?.getString(SingleAccount.accountTypeArg)
