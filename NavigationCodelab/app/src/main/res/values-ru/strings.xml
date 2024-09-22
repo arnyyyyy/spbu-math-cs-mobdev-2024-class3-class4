@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rally</string>
+    <string name="total">Всего</string>
+    <string name="due">В течение</string>
+    <string name="account_redacted">точка точка точка</string>
+    <string name="accounts">Аккаунты</string>
+    <string name="bills">Чеки (счета)</string>
+    <string name="sort">Сортировать</string>
+    <string name="see_all">Показать все</string>
+</resources>
