@@ -15,25 +15,25 @@ import com.example.compose.rally.ui.accounts.SingleAccountScreen
 import com.example.compose.rally.ui.bills.BillsScreen
 import com.example.compose.rally.ui.overview.OverviewScreen
 
-@Composable
-fun RallyNavHost(
-    navController: NavHostController,
-    modifier = Modifier.padding(innerPadding),
-    startDestination = Overview.route,
-) {
-    NavHost(
-        navController = navController,
-        startDestination = Overview.route,
-        modifier = Modifier.padding(innerPadding)
-    ) {
-        composable(route = Overview.route) {
-            Overview.screen()
-        }
-        composable(route = Accounts.route) {
-            Accounts.screen()
-        }
-        composable(route = Bills.route) {
-            Bills.screen()
-        }
-
-    }
+//@Composable
+//fun RallyNavHost(
+//    navController: NavHostController,
+//    modifier = Modifier.padding(innerPadding),
+//    startDestination = Overview.route,
+//) {
+//    NavHost(
+//        navController = navController,
+//        startDestination = Overview.route,
+//        modifier = Modifier.padding(innerPadding)
+//    ) {
+//        composable(route = Overview.route) {
+//            Overview.screen()
+//        }
+//        composable(route = Accounts.route) {
+//            Accounts.screen()
+//        }
+//        composable(route = Bills.route) {
+//            Bills.screen()
+//        }
+//
+//    }
