@@ -96,10 +96,12 @@ android {
 }
 
 dependencies {
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.8.6"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
     implementation "com.google.android.libraries.maps:maps:3.1.0-beta"
     implementation "com.google.maps.android:maps-v3-ktx:3.4.0"
+    implementation 'androidx.lifecycle:lifecycle-runtime-compose-android:2.8.6'
     constraints {
         // Volley is a transitive dependency of maps
         implementation("com.android.volley:volley:1.2.1") {
