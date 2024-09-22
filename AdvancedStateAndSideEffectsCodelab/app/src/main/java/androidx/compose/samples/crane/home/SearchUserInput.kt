@@ -123,7 +123,7 @@ fun ToDestinationUserInput(onToDestinationChanged: (String) -> Unit) {
 @Composable
 fun DatesUserInput() {
     CraneUserInput(
-        caption = "Select Dates",
+        caption = "Выбрать даты",
         text = "",
         vectorImageId = R.drawable.ic_calendar
     )

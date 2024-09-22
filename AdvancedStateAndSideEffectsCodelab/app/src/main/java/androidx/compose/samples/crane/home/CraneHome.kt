@@ -102,21 +102,24 @@ fun CraneHomeContent(
             when (tabSelected) {
                 CraneScreen.Fly -> {
                     ExploreSection(
-                        title = "Explore Flights by Destination",
+//                        title = "Explore Flights by Destination",
+                        title = "Вылеты до точки",
                         exploreList = suggestedDestinations,
                         onItemClicked = onExploreItemClicked
                     )
                 }
                 CraneScreen.Sleep -> {
                     ExploreSection(
-                        title = "Explore Properties by Destination",
+//                        title = "Explore Properties by Destination",
+                        title = "Свойства точки",
                         exploreList = viewModel.hotels,
                         onItemClicked = onExploreItemClicked
                     )
                 }
                 CraneScreen.Eat -> {
                     ExploreSection(
-                        title = "Explore Restaurants by Destination",
+//                        title = "Explore Restaurants by Destination",
+                        title = "Рестораны точки",
                         exploreList = viewModel.restaurants,
                         onItemClicked = onExploreItemClicked
                     )

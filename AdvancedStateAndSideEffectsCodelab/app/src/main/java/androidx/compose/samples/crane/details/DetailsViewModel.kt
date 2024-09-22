@@ -38,7 +38,7 @@ class DetailsViewModel @Inject constructor(
             return if (destination != null) {
                 Result.Success(destination)
             } else {
-                Result.Error(IllegalArgumentException("City doesn't exist"))
+                Result.Error(IllegalArgumentException("Такого города нет"))
             }
         }
 }

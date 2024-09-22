@@ -33,7 +33,7 @@ fun FlySearchContent(
 ) {
     CraneSearch {
         PeopleUserInput(
-            titleSuffix = ", Economy",
+            titleSuffix = ", Эконом",
             onPeopleChanged = onPeopleChanged
         )
         Spacer(Modifier.height(8.dp))
@@ -52,7 +52,7 @@ fun SleepSearchContent(onPeopleChanged: (Int) -> Unit) {
         Spacer(Modifier.height(8.dp))
         DatesUserInput()
         Spacer(Modifier.height(8.dp))
-        SimpleUserInput(caption = "Select Location", vectorImageId = R.drawable.ic_hotel)
+        SimpleUserInput(caption = "Выбрать локацию", vectorImageId = R.drawable.ic_hotel)
     }
 }
 
@@ -63,9 +63,9 @@ fun EatSearchContent(onPeopleChanged: (Int) -> Unit) {
         Spacer(Modifier.height(8.dp))
         DatesUserInput()
         Spacer(Modifier.height(8.dp))
-        SimpleUserInput(caption = "Select Time", vectorImageId = R.drawable.ic_time)
+        SimpleUserInput(caption = "Выбрать время", vectorImageId = R.drawable.ic_time)
         Spacer(Modifier.height(8.dp))
-        SimpleUserInput(caption = "Select Location", vectorImageId = R.drawable.ic_restaurant)
+        SimpleUserInput(caption = "Выбрать локацию", vectorImageId = R.drawable.ic_restaurant)
     }
 }
 

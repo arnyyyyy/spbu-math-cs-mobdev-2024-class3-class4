@@ -51,15 +51,13 @@ class MainViewModel @Inject constructor(
     fun updatePeople(people: Int) {
         viewModelScope.launch {
             if (people > MAX_PEOPLE) {
-            // TODO Codelab: Uncomment
-            //  _suggestedDestinations.value = emptyList()
+                _suggestedDestinations.value = emptyList()
             } else {
                 val newDestinations = withContext(defaultDispatcher) {
                     destinationsRepository.destinations
                         .shuffled(Random(people * (1..100).shuffled().first()))
                 }
-                // TODO Codelab: Uncomment
-                //  _suggestedDestinations.value = newDestinations
+                 _suggestedDestinations.value = newDestinations
             }
         }
     }
@@ -70,8 +68,7 @@ class MainViewModel @Inject constructor(
                 destinationsRepository.destinations
                     .filter { it.city.nameToDisplay.contains(newDestination) }
             }
-            // TODO Codelab: Uncomment
-            //  _suggestedDestinations.value = newDestinations
+            _suggestedDestinations.value = newDestinations
         }
     }
 }
